@@ -1,0 +1,53 @@
+create table cooperativa(
+    id_coo int primary key auto_increment,
+    nombre_coo varchar(50) not null,
+    ciudad_coo varchar(50) not null,
+    provincia_coo varchar(50) not null,
+    mision_coo varchar(500) not null,
+    vision_coo varchar(500) not null,
+    direccion_coo varchar(100) not null,
+    latitud_coo double not null,
+    longitud_coo double not null,
+    logo_coo varchar(50) not null
+);
+
+create table agencia(
+    id_age int primary key auto_increment,
+    gerente_age varchar(50) not null,
+    telefono_age varchar(15) not null,
+    email_age varchar(50) not null,
+    provincia_age varchar(50) not null,
+    ciudad_age varchar(50) not null,
+    direccion_age varchar(50) not null,
+    latitud_age double not null,
+    longitud_age double not null,
+    imagen_age varchar(50) not null,
+    id_coo int not null,
+    foreign key(id_coo) references cooperativa(id_coo) ON DELETE CASCADE
+);
+
+create table cajero(
+    id_caj int primary key auto_increment,
+    tipo_caj varchar(50) not null,
+    provincia_caj varchar(50) not null,
+    ciudad_caj varchar(50) not null,
+    direccion_caj varchar(50) not null,
+    latitud_caj double not null,
+    longitud_caj double not null,
+    id_coo int not null,
+    foreign key(id_coo) references cooperativa(id_coo) ON DELETE CASCADE
+);
+
+create table corresponsal(
+    id_cor int primary key auto_increment,
+    tipo_negocio_cor varchar(50) not null,
+    propietario_cor varchar(50) not null,
+    telefono_cor varchar(15) not null,
+    provincia_cor varchar(50) not null,
+    ciudad_cor varchar(50) not null,
+    direccion_cor varchar(50) not null,
+    latitud_cor double not null,
+    longitud_cor double not null,
+    id_coo int not null,
+    foreign key(id_coo) references cooperativa(id_coo) ON DELETE CASCADE
+);
